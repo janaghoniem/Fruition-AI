@@ -30,7 +30,7 @@
 
 @layer components {
   .pattern {
-    @apply bg-hero-pattern w-full h-[3700px] bg-center bg-cover absolute z-0;
+    @apply bg-hero-pattern w-full h-[3590px] bg-center bg-cover absolute z-0;
   }
 
   .wrapper {
@@ -70,7 +70,7 @@
   }
 
   .about-section {
-    @apply flex flex-col items-center text-center m-15 px-5 py-5 text-white;
+    @apply flex flex-col items-center text-center m-15 pt-20 text-white;
   }
 
   .about-section td {
@@ -79,7 +79,7 @@
   }
 
   .section-text {
-    @apply text-[30px] text-lg text-left;
+    @apply text-[26px] text-lg text-left;
   }
 
   .section-text h4 {
@@ -95,7 +95,7 @@
   }
 
   .demo-section {
-    @apply flex-col items-center m-20 mt-15
+    @apply flex-col items-center m-20 mt-15 pt-20
   }
 
   .demo-content {
@@ -105,5 +105,35 @@
   .demo-button {
     @apply bg-[#C8A8B3] text-[#FDD6BA] font-medium rounded-2xl p-20 cursor-pointer text-[30px] hover:opacity-75 transition-opacity duration-300
   }
+
+  .popup-overlay {
+    @apply fixed inset-0 bg-black/50 flex justify-center items-center z-[999];
+  }
+
+  .popup-content {
+    @apply bg-white rounded-3xl p-30 pt-5 relative w-[90%] max-w-3xl text-center;
+    background: linear-gradient(135deg, #FDD6BA, #C8A8B3);
+  }
+
+  .popup-close {
+    @apply absolute top-4 right-4 text-2xl cursor-pointer bg-white/30 rounded-full px-2;
+  }
+
+  .preview-area {
+    @apply mb-4;
+  }
+
+  .preview-img, .preview-video {
+    @apply rounded-xl max-h-[300px] mx-auto;
+  }
+
+  .prediction-text {
+    @apply text-3xl font-semibold text-white mt-4;
+  }
+
+  .loading-spinner {
+    @apply w-12 h-12 border-4 border-t-transparent border-white rounded-full animate-spin mx-auto;
+  }
+
 
 }
