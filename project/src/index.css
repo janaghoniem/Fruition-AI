@@ -65,4 +65,33 @@
     @apply font-medium text-[24px] bg-white px-6 py-3 rounded-full mt-6 inline-block text-[#FDD6BA];
   }
 
+  .section-title {
+    @apply text-[36px] font-semibold text-center;
+  }
+
+  .about-section {
+    @apply flex flex-col items-center text-center mt-10 px-5 py-5 text-white;
+  }
+
+  .about-section td {
+    @apply border-25 border-transparent;
+
+  }
+
+  .section-text {
+    @apply text-[32px] text-lg text-left;
+  }
+
+  .section-text h4 {
+    @apply font-medium;
+  }
+
+  .section-text p {
+    @apply font-[Oxygen];
+  }
+
+  .performance-content {
+    @apply flex flex-col md:flex-row gap-10 mt-10 items-center justify-center px-5 py-5 text-white;
+  }
+
 }

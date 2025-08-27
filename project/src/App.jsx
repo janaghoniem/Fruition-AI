@@ -32,11 +32,67 @@ function App() {
               <img src="/Fruits-Hero.svg" alt="fruit" className='hero-image' />
             </div>
           </section>
-          <section id='About'>
-
+          <section id='About' className='about-section'>
+            <h2 className='section-title'>About</h2>
+            <table>
+              <tbody>
+                <tr>
+                  <td><img src="/mission-about-us.svg" alt="" /></td>
+                  <td>
+                    <div className='section-text'>
+                      <h4>Our Mission</h4>
+                      <p>To accurately classify fruits using advanced deep learning.</p>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="/data-about-us.svg" alt="" /></td>
+                  <td>
+                    <div className='section-text'>
+                      <h4>The Data</h4>
+                      <p>To accurately classify fruits using advanced deep learning.</p>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="/brain-about-us.svg" alt="" /></td>
+                  <td>
+                    <div className='section-text'>
+                      <h4>The Brains</h4>
+                      <p>To accurately classify fruits using advanced deep learning.</p>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </section>
           <section id='Performance'>
-
+            <h2 className='section-title'>Performance</h2>
+            <div className='performance-content'>
+              <div>
+                <img src="/solution-performance.svg" alt="" />
+                <div className='section-text'>
+                  <h4>The Solution</h4>
+                  <p>We addressed this by balancing the dataset and training our models to perform better on a wider variety of fruits.</p>
+                </div>
+              </div>
+              <div className='flex justify-between items-center'>
+                <div>
+                  <img src="/challenge-performance.svg" alt="" />
+                  <div className='section-text'>
+                    <h4>The Challenge</h4>
+                    <p>The original dataset had a severe class imbalance, with one class ("Apple") having thousands more images than others. This caused bias.</p>                  
+                    </div>
+                </div>
+                <div>
+                  <img src="/results-performance.svg" alt="" />
+                  <div className='section-text'>
+                    <h4>The Results</h4>
+                    <p>After extensive testing, EfficientNetB0 with our custom augmentations achieved the highest scores, with an accuracy of 96% </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </section>
           <section id='Demo'>
 
