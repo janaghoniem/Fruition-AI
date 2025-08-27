@@ -9,8 +9,7 @@
 
   --breakpoint-xs: 480px;
 
-  --background-image-hero-pattern: url("/Hero-bg1.png");
-  --background-image-demo-pattern: url("/demo-bg.png");
+  --background-image-hero-pattern: url("/grouped-bg.png");
 }
 
 @layer base {
@@ -31,7 +30,7 @@
 
 @layer components {
   .pattern {
-    @apply bg-hero-pattern w-full h-[960px] bg-center bg-cover absolute z-0;
+    @apply bg-hero-pattern w-full h-[3700px] bg-center bg-cover absolute z-0;
   }
 
   .wrapper {
@@ -96,7 +95,7 @@
   }
 
   .demo-section {
-    @apply flex-col items-center m-20 mt-15 
+    @apply flex-col items-center m-20 mt-15
   }
 
   .demo-content {
@@ -104,7 +103,7 @@
   }
 
   .demo-button {
-    @apply bg-[#C8A8B3] text-[#FDD6BA] rounded-2xl p-20
+    @apply bg-[#C8A8B3] text-[#FDD6BA] font-medium rounded-2xl p-20 cursor-pointer text-[30px] hover:opacity-75 transition-opacity duration-300
   }
 
 }
