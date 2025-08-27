@@ -66,11 +66,11 @@
   }
 
   .section-title {
-    @apply text-[36px] font-semibold text-center;
+    @apply text-[34px] font-semibold text-center text-white;
   }
 
   .about-section {
-    @apply flex flex-col items-center text-center mt-10 px-5 py-5 text-white;
+    @apply flex flex-col items-center text-center m-15 px-5 py-5 text-white;
   }
 
   .about-section td {
@@ -79,7 +79,7 @@
   }
 
   .section-text {
-    @apply text-[32px] text-lg text-left;
+    @apply text-[30px] text-lg text-left;
   }
 
   .section-text h4 {
@@ -91,7 +91,7 @@
   }
 
   .performance-content {
-    @apply flex flex-col md:flex-row gap-10 mt-10 items-center justify-center px-5 py-5 text-white;
+    @apply flex-col md:flex-row items-center justify-center px-5 py-5 text-white;
   }
 
 }
