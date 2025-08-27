@@ -10,6 +10,7 @@
   --breakpoint-xs: 480px;
 
   --background-image-hero-pattern: url("/Hero-bg1.png");
+  --background-image-demo-pattern: url("/demo-bg.png");
 }
 
 @layer base {
@@ -92,6 +93,18 @@
 
   .performance-content {
     @apply flex-col md:flex-row items-center justify-center px-5 py-5 text-white;
+  }
+
+  .demo-section {
+    @apply flex-col items-center m-20 mt-15 
+  }
+
+  .demo-content {
+    @apply flex gap-8 justify-center;
+  }
+
+  .demo-button {
+    @apply bg-[#C8A8B3] text-[#FDD6BA] rounded-2xl p-20
   }
 
 }

@@ -94,8 +94,19 @@ function App() {
               </div>
             </div>
           </section>
-          <section id='Demo'>
-
+          <section id='Demo' className=' demo-section'>
+            <h2 className='section-title'>Try Our Demo</h2>
+            <h2 className='section-title mt-2 font-medium'>Our Model will then tell you what kind of fruit it is!</h2>
+            <div className='demo-content'>
+              <button className='demo-button'>
+                <h2>Upload an Image</h2>
+                <img src="/upload-demo.svg" alt="" />
+              </button>
+              <button className='demo-button'> 
+                <h2>Use Your Camera</h2>
+                <img src="/camera-demo.svg" alt="" />
+              </button>
+            </div>
           </section>
           </div>
         </main>
