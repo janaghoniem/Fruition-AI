@@ -49,25 +49,97 @@ function App() {
     }
   };
 
-  const runPrediction = async (file) => {
+    const runPrediction = async (file) => {
     setLoading(true);
     setPrediction(null);
 
-    setTimeout(() => {
-      setPrediction('Example: Apple 🍎');
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const res = await fetch("http://127.0.0.1:8000/predict", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await res.json();
+      setPrediction(`${data.label} (${(data.confidence * 100).toFixed(1)}%)`);
+    } catch (error) {
+      console.error("Prediction error:", error);
+      setPrediction("Error making prediction");
+    } finally {
       setLoading(false);
-    }, 1500);
+    }
   };
 
   const runPredictionFromCamera = async (stream) => {
     setLoading(true);
     setPrediction(null);
 
-    setTimeout(() => {
-      setPrediction('Example: Banana 🍌');
+    try {
+      // Create a snapshot from the video stream
+      const video = document.createElement("video");
+      video.srcObject = stream;
+      await video.play();
+
+      const canvas = document.createElement("canvas");
+      canvas.width = 224;
+      canvas.height = 224;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+      const blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/jpeg"));
+      const file = new File([blob], "capture.jpg", { type: "image/jpeg" });
+
+      // Send snapshot to FastAPI
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const res = await fetch("http://127.0.0.1:8000/predict", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await res.json();
+      setPrediction(`${data.label} (${(data.confidence * 100).toFixed(1)}%)`);
+    } catch (error) {
+      console.error("Prediction error:", error);
+      setPrediction("Error making prediction");
+    } finally {
       setLoading(false);
-    }, 2000);
+    }
   };
+
+  let cameraInterval;
+
+  const runLiveCameraPrediction = (stream) => {
+    const video = document.createElement("video");
+    video.srcObject = stream;
+    video.play();
+
+    cameraInterval = setInterval(async () => {
+      const canvas = document.createElement("canvas");
+      canvas.width = 224;
+      canvas.height = 224;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+      const blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/jpeg"));
+      const file = new File([blob], "capture.jpg", { type: "image/jpeg" });
+
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const res = await fetch("http://127.0.0.1:8000/predict", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await res.json();
+      setPrediction(`${data.label} (${(data.confidence * 100).toFixed(1)}%)`);
+    }, 2000); // every 2 seconds
+  };
+
 
   const closePopup = () => {
     setPopupOpen(false);
