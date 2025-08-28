@@ -35,7 +35,7 @@ export default function Popup({
             <>
               <video ref={videoRef} autoPlay playsInline muted className="preview-video" />
               <button
-                className="mt-4 px-6 py-2 bg-blue-500 text-white rounded-lg shadow hover:opacity-80"
+                className="mt-10 px-8 py-4 bg-gradient-to-r from-purple-400 to-orange-300 text-white font-semibold rounded-lg shadow-md hover:opacity-80 transition"
                 onClick={onCapture}
               >
                 Capture & Predict
