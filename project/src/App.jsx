@@ -59,31 +59,21 @@ function App() {
     }
   };
 
-  const startLivePrediction = () => {
+  const captureFrameAndPredict = async () => {
     if (!videoRef.current) return;
 
-    cameraIntervalRef.current = setInterval(async () => {
-      const canvas = document.createElement("canvas");
-      canvas.width = 224;
-      canvas.height = 224;
-      const ctx = canvas.getContext("2d");
-      ctx.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
+    const canvas = document.createElement("canvas");
+    canvas.width = 224;
+    canvas.height = 224;
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
 
-      const blob = await new Promise((resolve) =>
-        canvas.toBlob(resolve, "image/jpeg")
-      );
-      const file = new File([blob], "frame.jpg", { type: "image/jpeg" });
-      const formData = new FormData();
-      formData.append("file", file);
+    const blob = await new Promise(resolve =>
+      canvas.toBlob(resolve, "image/jpeg")
+    );
+    const file = new File([blob], "frame.jpg", { type: "image/jpeg" });
 
-      try {
-        const res = await fetch("http://127.0.0.1:8000/predict", { method: "POST", body: formData });
-        const data = await res.json();
-        setPrediction(`${data.label} (${(data.confidence * 100).toFixed(1)}%)`);
-      } catch (err) {
-        console.error("Live prediction error:", err);
-      }
-    }, 1000);
+    await runPrediction(file);
   };
 
   const handleCameraClick = async () => {
@@ -93,21 +83,11 @@ function App() {
       setVideoStream(stream);
       setPopupMode('camera');
       setPopupOpen(true);
-
-      setTimeout(() => {
-        if (videoRef.current) {
-          videoRef.current.srcObject = stream;
-          videoRef.current.play();
-          startLivePrediction();
-        }
-      }, 0);
     } catch (err) {
-      console.error('Error accessing the camera: ', err);
+      console.error('Error accessing the camera:', err);
       alert('Could not access camera. Please check your permissions.');
     }
   };
-
-
 
   const closePopup = () => {
     setPopupOpen(false);
@@ -155,6 +135,7 @@ function App() {
                 if (fileInputRef.current) fileInputRef.current.value = '';
                 fileInputRef.current?.click();
               }}
+              onCapture={captureFrameAndPredict}
             />
           )}
         </div>

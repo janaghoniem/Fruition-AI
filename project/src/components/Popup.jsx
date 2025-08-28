@@ -9,34 +9,40 @@ export default function Popup({
   loading,
   onClose,
   onSelectAnother,
-  startLivePrediction // pass this in from App
+  onCapture
 }) {
   useEffect(() => {
     if (mode === 'camera' && videoStream && videoRef?.current) {
       videoRef.current.srcObject = videoStream;
-      videoRef.current.play().then(() => {
-        startLivePrediction(); // NOW start predictions
-      });
+      videoRef.current.play();
     }
     return () => {
       if (videoStream) {
         videoStream.getTracks().forEach(track => track.stop());
       }
     };
-  }, [mode, videoStream, videoRef, startLivePrediction]);
+  }, [mode, videoStream, videoRef]);
 
   return (
     <div className="popup-overlay">
       <div className="popup-content">
         <button className="popup-close" onClick={onClose}>✕</button>
-        <h2 className='text-white text-center font-semibold mb-10 text-3xl pt-5'>Prediction</h2>
+        <h2 className="text-white text-center font-semibold mb-10 text-3xl pt-5">Prediction</h2>
 
         <div className="preview-area">
           {mode === 'upload' && file && (
             <img src={URL.createObjectURL(file)} alt="Uploaded preview" className="preview-img" />
           )}
           {mode === 'camera' && (
-            <video ref={videoRef} autoPlay playsInline muted className="preview-video" />
+            <>
+              <video ref={videoRef} autoPlay playsInline muted className="preview-video" />
+              <button
+                className="mt-4 px-6 py-2 bg-blue-500 text-white rounded-lg shadow hover:opacity-80"
+                onClick={onCapture}
+              >
+                Capture & Predict
+              </button>
+            </>
           )}
         </div>
 
