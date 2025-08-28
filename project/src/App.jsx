@@ -146,7 +146,7 @@ function App() {
               mode={popupMode}
               file={selectedFile}
               videoStream={videoStream}
-              videoRef={videoRef} // pass it down here
+              videoRef={videoRef}
               prediction={prediction}
               loading={loading}
               onClose={closePopup}
