@@ -23,5 +23,5 @@ async def predict(file: UploadFile = File(...)):
         shutil.copyfileobj(file.file, tmp)
         tmp_path = tmp.name
 
-    label, confidence = predict_image(tmp_path)
-    return PredictionResponse(label=label, confidence=confidence)
+    label = predict_image(tmp_path)
+    return PredictionResponse(label=label)

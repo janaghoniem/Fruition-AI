@@ -28,12 +28,15 @@ function App() {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
+      console.log(file.name);
       setSelectedFile(file);
       setPopupMode('upload');
       setPopupOpen(true);
       runPrediction(file);
     }
+    event.target.value = '';
   };
+
 
   const handleCameraClick = async () => {
     try {
@@ -63,7 +66,7 @@ function App() {
       });
 
       const data = await res.json();
-      setPrediction(`${data.label} (${(data.confidence * 100).toFixed(1)}%)`);
+      setPrediction(`${data.label}`);
     } catch (error) {
       console.error("Prediction error:", error);
       setPrediction("Error making prediction");
@@ -172,7 +175,6 @@ function App() {
               isCameraActive={isCameraActive}
               selectedFile={selectedFile}
             />
-
             {popupOpen && (
               <Popup
                 mode={popupMode}
@@ -181,6 +183,11 @@ function App() {
                 prediction={prediction}
                 loading={loading}
                 onClose={closePopup}
+                onSelectAnother={() => {
+                  setSelectedFile(null);
+                  if (fileInputRef.current) fileInputRef.current.value = '';
+                  fileInputRef.current?.click();
+                }}
               />
             )}
           </div>
