@@ -21,10 +21,6 @@ const DemoSection = ({ handleUploadClick, handleFileChange, handleCameraClick, f
             <img src="/camera-demo.svg" alt="Camera Icon" />
             </button>
         </div>
-        {/* This is where the camera stream or uploaded image will be displayed */}
-        {isCameraActive && (
-            <video ref={videoRef} className="mt-8" autoPlay playsInline muted />
-        )}
     </section>
   )
 }

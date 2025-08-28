@@ -13,15 +13,13 @@ export default function Popup({
 }) {
   useEffect(() => {
     if (mode === 'camera' && videoStream && videoRef?.current) {
-      videoRef.current.srcObject = videoStream;
-      videoRef.current.play();
-    }
-    return () => {
-      if (videoStream) {
-        videoStream.getTracks().forEach(track => track.stop());
+      if (!videoRef.current.srcObject) {
+        videoRef.current.srcObject = videoStream;
       }
-    };
+    }
   }, [mode, videoStream, videoRef]);
+
+
 
   return (
     <div className="popup-overlay">
