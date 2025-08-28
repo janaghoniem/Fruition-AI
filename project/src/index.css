@@ -111,7 +111,7 @@
   }
 
   .popup-content {
-    @apply bg-white rounded-3xl p-30 pt-5 relative w-[90%] max-w-3xl text-center;
+    @apply bg-white rounded-3xl p-25 pt-5 pb-15 relative w-[90%] max-w-3xl text-center;
     background: linear-gradient(135deg, #FDD6BA, #C8A8B3);
   }
 

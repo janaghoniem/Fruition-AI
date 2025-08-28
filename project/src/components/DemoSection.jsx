@@ -1,6 +1,6 @@
 import React from 'react'
 
-const DemoSection = ({ handleUploadClick, handleFileChange, handleCameraClick, fileInputRef, videoRef, isCameraActive, selectedFile }) => {
+const DemoSection = ({ handleUploadClick, handleFileChange, handleCameraClick, fileInputRef, videoRef, isCameraActive }) => {
   return (
     <section id='Demo' className=' demo-section'>
         <h2 className='section-title'>Try Our Demo</h2>
@@ -24,11 +24,6 @@ const DemoSection = ({ handleUploadClick, handleFileChange, handleCameraClick, f
         {/* This is where the camera stream or uploaded image will be displayed */}
         {isCameraActive && (
             <video ref={videoRef} className="mt-8" autoPlay playsInline muted />
-        )}
-        {selectedFile && (
-            <div className="mt-8">
-            <img src={URL.createObjectURL(selectedFile)} alt="Uploaded Preview" className="max-w-full h-auto" />
-            </div>
         )}
     </section>
   )
